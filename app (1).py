@@ -216,7 +216,7 @@ def process_video(video_path, workdir, api_key, model_name, model_size, count, m
 with st.sidebar:
     st.header("⚙️ Configuración")
     api_key = st.text_input("Clave API de Gemini", type="password", help="Se usa solo durante esta sesión. No la compartas ni la publiques.")
-    model_name = st.text_input("Modelo Gemini", value="gemini-2.5-flash")
+    model_name = st.text_input("Modelo Gemini", value="gemini-3.8-flash")
     model_size = st.selectbox("Modelo de transcripción", ["small", "medium", "large-v3"], index=0)
     clip_count = st.slider("Cantidad de clips", 1, 10, 5)
     min_len = st.number_input("Duración mínima (segundos)", min_value=20, max_value=180, value=20, step=5)
@@ -262,7 +262,7 @@ if st.button("🚀 Generar clips", type="primary", use_container_width=True):
                     f.write(uploaded.getbuffer())
 
             outputs, zip_path, moments = process_video(
-                video_path, tmp_path, api_key, model_name.strip() or "gemini-2.5-flash",
+                video_path, tmp_path, api_key, model_name.strip() or "gemini-3.8-flash",
                 model_size, int(clip_count), int(min_len), int(max_len), status
             )
             st.success(f"¡Listo! Se generaron {len(outputs)} clips.")
